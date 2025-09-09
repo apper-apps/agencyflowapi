@@ -234,18 +234,18 @@ default:
   const themeClasses = getThemeClasses()
 
   return (
-    <Modal
+<Modal
       isOpen={isOpen}
       onClose={onClose}
       title="Form Preview"
     >
-      <div className="max-h-96 overflow-y-auto">
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="max-h-[500px] overflow-y-auto bg-gradient-to-b from-slate-50 to-white rounded-xl p-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           {/* Form Header */}
-          <div className="pb-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">{form.name}</h3>
+          <div className="pb-6 border-b border-slate-200/60">
+            <h3 className="text-xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent">{form.name}</h3>
             {form.description && (
-              <p className="text-gray-600 mt-1">{form.description}</p>
+              <p className="text-slate-600 mt-2 leading-relaxed">{form.description}</p>
             )}
           </div>
 
@@ -255,28 +255,29 @@ default:
               <div key={field.id} className={themeClasses.field}>
                 <label 
                   htmlFor={field.id}
-                  className={`block mb-2 ${themeClasses.label}`}
+                  className={`block mb-3 ${themeClasses.label}`}
                 >
                   {field.label}
-                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                  {field.required && <span className="text-red-500 ml-1 text-lg">*</span>}
                 </label>
                 
                 {renderFormField(field)}
                 
                 {field.helpText && (
-                  <p className="text-xs text-gray-500 mt-1">{field.helpText}</p>
+                  <p className="text-xs text-slate-500 mt-2 italic">{field.helpText}</p>
                 )}
               </div>
             ))}
           </div>
 
           {/* Submit Button */}
-          <div className="pt-4 border-t border-gray-200">
+          <div className="pt-6 border-t border-slate-200/60 bg-gradient-to-r from-white to-slate-50 -mx-6 px-6 rounded-b-xl">
             <div className="flex space-x-3">
               <Button
                 type="submit"
                 loading={submitting}
                 disabled={form.fields.length === 0}
+                className="flex-1"
               >
                 {form.settings?.submitText || "Submit"}
               </Button>

@@ -70,22 +70,22 @@ const FormFieldPanel = ({ onAddField }) => {
     })
 
     return (
-      <div
+<div
         ref={drag}
         onClick={() => onAddField(fieldType.type)}
-        className={`p-3 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 hover:border-primary-300 cursor-pointer transition-all group ${
+        className={`p-4 border border-slate-200 rounded-xl bg-white/80 backdrop-blur-sm hover:bg-white hover:border-indigo-300 hover:shadow-md hover:shadow-indigo-500/20 cursor-pointer transition-all duration-200 group ${
           isDragging ? "opacity-50 scale-95" : ""
         }`}
       >
-        <div className="flex items-start space-x-3">
+<div className="flex items-start space-x-4">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center group-hover:bg-primary-200 transition-colors">
-              <ApperIcon name={fieldType.icon} className="w-4 h-4 text-primary-600" />
+            <div className="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl flex items-center justify-center group-hover:from-indigo-200 group-hover:to-purple-200 transition-all duration-200 shadow-sm group-hover:shadow-md">
+              <ApperIcon name={fieldType.icon} className="w-5 h-5 text-indigo-600 group-hover:scale-110 transition-transform duration-200" />
             </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-medium text-gray-900">{fieldType.label}</h4>
-            <p className="text-xs text-gray-500 mt-1">{fieldType.description}</p>
+<div className="flex-1 min-w-0">
+            <h4 className="text-sm font-semibold text-slate-900 group-hover:text-indigo-900 transition-colors duration-200">{fieldType.label}</h4>
+            <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">{fieldType.description}</p>
           </div>
         </div>
       </div>
@@ -93,38 +93,52 @@ const FormFieldPanel = ({ onAddField }) => {
   }
 
   return (
-    <div className="space-y-3">
-      <div className="text-xs uppercase tracking-wide font-semibold text-gray-500 mb-3">
-        Basic Fields
+<div className="space-y-6">
+      <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+        <div className="text-xs uppercase tracking-wider font-bold text-slate-700 mb-4 flex items-center">
+          <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded mr-2"></div>
+          Basic Fields
+        </div>
+        <div className="space-y-2">
+          {fieldTypes.slice(0, 5).map((fieldType) => (
+            <FieldItem key={fieldType.type} fieldType={fieldType} />
+          ))}
+        </div>
       </div>
       
-      {fieldTypes.slice(0, 5).map((fieldType) => (
-        <FieldItem key={fieldType.type} fieldType={fieldType} />
-      ))}
-      
-      <div className="text-xs uppercase tracking-wide font-semibold text-gray-500 mb-3 mt-6">
-        Choice Fields
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4 border border-purple-200/60">
+        <div className="text-xs uppercase tracking-wider font-bold text-slate-700 mb-4 flex items-center">
+          <div className="w-4 h-4 bg-gradient-to-br from-purple-500 to-pink-600 rounded mr-2"></div>
+          Choice Fields
+        </div>
+        <div className="space-y-2">
+          {fieldTypes.slice(5, 8).map((fieldType) => (
+            <FieldItem key={fieldType.type} fieldType={fieldType} />
+          ))}
+        </div>
       </div>
       
-      {fieldTypes.slice(5, 8).map((fieldType) => (
-        <FieldItem key={fieldType.type} fieldType={fieldType} />
-      ))}
-      
-      <div className="text-xs uppercase tracking-wide font-semibold text-gray-500 mb-3 mt-6">
-        Special Fields
+      <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-200/60">
+        <div className="text-xs uppercase tracking-wider font-bold text-slate-700 mb-4 flex items-center">
+          <div className="w-4 h-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded mr-2"></div>
+          Special Fields
+        </div>
+        <div className="space-y-2">
+          {fieldTypes.slice(8).map((fieldType) => (
+            <FieldItem key={fieldType.type} fieldType={fieldType} />
+          ))}
+        </div>
       </div>
       
-      {fieldTypes.slice(8).map((fieldType) => (
-        <FieldItem key={fieldType.type} fieldType={fieldType} />
-      ))}
-      
-      <div className="mt-6 p-3 bg-blue-50 rounded-lg border border-blue-200">
-        <div className="flex items-start space-x-2">
-          <ApperIcon name="Info" className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+<div className="mt-6 p-6 bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 rounded-xl border border-amber-200/60">
+        <div className="flex items-start space-x-4">
+          <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 flex-shrink-0">
+            <ApperIcon name="Lightbulb" className="w-4 h-4 text-white" />
+          </div>
           <div>
-            <p className="text-xs text-blue-700 font-medium">Pro Tip</p>
-            <p className="text-xs text-blue-600 mt-1">
-              Click or drag fields to add them to your form. Customize each field in the settings panel.
+            <p className="text-sm text-amber-900 font-bold">Pro Tip</p>
+            <p className="text-xs text-amber-700 mt-2 leading-relaxed">
+              Click or drag fields to add them to your form. Customize each field in the settings panel to match your needs.
             </p>
           </div>
         </div>

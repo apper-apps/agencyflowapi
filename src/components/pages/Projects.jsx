@@ -186,18 +186,18 @@ const Projects = () => {
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadData} />
 
-  return (
+return (
     <div className="h-full flex flex-col">
       <Header title="Projects" onSearch={handleSearch} />
       
       <div className="flex-1 p-6 overflow-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-1">
+        <div className="mb-8 flex justify-between items-start">
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-6 border border-slate-200/60 flex-1 mr-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-2">
               Project Management
             </h2>
-            <p className="text-gray-600">
-              Track project progress and manage deliverables
+            <p className="text-slate-600 leading-relaxed">
+              Track project progress and manage deliverables efficiently
             </p>
           </div>
           <Button
@@ -214,6 +214,7 @@ const Projects = () => {
               setIsModalOpen(true)
             }}
             icon="Plus"
+            className="px-6 py-4"
           >
             Add Project
           </Button>
@@ -224,17 +225,19 @@ const Projects = () => {
             title="No projects found"
             description="Start managing your work by creating your first project"
             actionText="Add Project"
-            icon="Briefcase"
+            icon="FolderOpen"
             onAction={() => setIsModalOpen(true)}
           />
         ) : (
-          <DataTable
-            data={filteredProjects}
-            columns={columns}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            emptyMessage="No projects match your search"
-          />
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+            <DataTable
+              data={filteredProjects}
+              columns={columns}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              emptyMessage="No projects match your search"
+            />
+          </div>
         )}
 
         {/* Project Form Modal */}
@@ -259,9 +262,9 @@ const Projects = () => {
             </Button>
           ]}
         >
-          <form id="project-form" onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+          <form id="project-form" onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Project Name *
               </label>
               <Input
@@ -270,17 +273,19 @@ const Projects = () => {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Enter project name"
                 required
+                className="bg-white/80"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Client *
               </label>
               <Select
                 value={formData.clientId}
                 onChange={(e) => setFormData({ ...formData, clientId: e.target.value })}
                 required
+                className="bg-white/80"
               >
                 <option value="">Select a client</option>
                 {clients.map(client => (
@@ -291,27 +296,28 @@ const Projects = () => {
               </Select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Description
               </label>
               <textarea
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-                rows={3}
+                className="w-full px-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 resize-none shadow-sm"
+                rows={4}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Project description and scope"
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Status
                 </label>
                 <Select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                  className="bg-white/80"
                 >
                   <option value="Planning">Planning</option>
                   <option value="In Progress">In Progress</option>
@@ -319,24 +325,26 @@ const Projects = () => {
                   <option value="Completed">Completed</option>
                 </Select>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Start Date
                 </label>
                 <Input
                   type="date"
                   value={formData.startDate}
                   onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Due Date
                 </label>
                 <Input
                   type="date"
                   value={formData.dueDate}
                   onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                  className="bg-white/80"
                 />
               </div>
             </div>

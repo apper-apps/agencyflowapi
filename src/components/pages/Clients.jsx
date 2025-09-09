@@ -171,17 +171,17 @@ const Clients = () => {
   if (error) return <Error message={error} onRetry={loadClients} />
 
   return (
-    <div className="h-full flex flex-col">
+<div className="h-full flex flex-col">
       <Header title="Clients" onSearch={handleSearch} />
       
       <div className="flex-1 p-6 overflow-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-1">
+        <div className="mb-8 flex justify-between items-start">
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-6 border border-slate-200/60 flex-1 mr-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-2">
               Client Management
             </h2>
-            <p className="text-gray-600">
-              Manage your client relationships and project assignments
+            <p className="text-slate-600 leading-relaxed">
+              Manage your client relationships and project assignments with ease
             </p>
           </div>
           <Button
@@ -197,6 +197,7 @@ const Clients = () => {
               setIsModalOpen(true)
             }}
             icon="Plus"
+            className="px-6 py-4"
           >
             Add Client
           </Button>
@@ -207,17 +208,19 @@ const Clients = () => {
             title="No clients found"
             description="Start building your client base by adding your first client"
             actionText="Add Client"
-            icon="Building"
+            icon="Building2"
             onAction={() => setIsModalOpen(true)}
           />
         ) : (
-          <DataTable
-            data={filteredClients}
-            columns={columns}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            emptyMessage="No clients match your search"
-          />
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+            <DataTable
+              data={filteredClients}
+              columns={columns}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              emptyMessage="No clients match your search"
+            />
+          </div>
         )}
 
         {/* Client Form Modal */}
@@ -242,10 +245,10 @@ const Clients = () => {
             </Button>
           ]}
         >
-          <form id="client-form" onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+          <form id="client-form" onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Name *
                 </label>
                 <Input
@@ -254,10 +257,11 @@ const Clients = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Enter full name"
                   required
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Company *
                 </label>
                 <Input
@@ -266,13 +270,14 @@ const Clients = () => {
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   placeholder="Company name"
                   required
+                  className="bg-white/80"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Email *
                 </label>
                 <Input
@@ -281,10 +286,11 @@ const Clients = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@example.com"
                   required
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Phone
                 </label>
                 <Input
@@ -292,17 +298,19 @@ const Clients = () => {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+1 (555) 123-4567"
+                  className="bg-white/80"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Status
               </label>
               <Select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                className="bg-white/80"
               >
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>

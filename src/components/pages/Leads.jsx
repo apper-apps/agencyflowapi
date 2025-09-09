@@ -186,17 +186,17 @@ const Leads = () => {
   if (loading) return <Loading />
   if (error) return <Error message={error} onRetry={loadLeads} />
 
-  return (
+return (
     <div className="h-full flex flex-col">
       <Header title="Leads" onSearch={handleSearch} />
       
       <div className="flex-1 p-6 overflow-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-1">
+        <div className="mb-8 flex justify-between items-start">
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-6 border border-slate-200/60 flex-1 mr-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-2">
               Lead Management
             </h2>
-            <p className="text-gray-600">
+            <p className="text-slate-600 leading-relaxed">
               Manage your sales leads and convert them to clients
             </p>
           </div>
@@ -215,6 +215,7 @@ const Leads = () => {
               setIsModalOpen(true)
             }}
             icon="Plus"
+            className="px-6 py-4"
           >
             Add Lead
           </Button>
@@ -225,18 +226,20 @@ const Leads = () => {
             title="No leads found"
             description="Start building your sales pipeline by adding your first lead"
             actionText="Add Lead"
-            icon="Users"
+            icon="UserPlus"
             onAction={() => setIsModalOpen(true)}
           />
         ) : (
-          <DataTable
-            data={filteredLeads}
-            columns={columns}
-            actions={actions}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            emptyMessage="No leads match your search"
-          />
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+            <DataTable
+              data={filteredLeads}
+              columns={columns}
+              actions={actions}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              emptyMessage="No leads match your search"
+            />
+          </div>
         )}
 
         {/* Lead Form Modal */}
@@ -261,10 +264,10 @@ const Leads = () => {
             </Button>
           ]}
         >
-          <form id="lead-form" onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+          <form id="lead-form" onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Name *
                 </label>
                 <Input
@@ -273,10 +276,11 @@ const Leads = () => {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Enter full name"
                   required
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Company
                 </label>
                 <Input
@@ -284,13 +288,14 @@ const Leads = () => {
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   placeholder="Company name"
+                  className="bg-white/80"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Email *
                 </label>
                 <Input
@@ -299,10 +304,11 @@ const Leads = () => {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="email@example.com"
                   required
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Phone
                 </label>
                 <Input
@@ -310,18 +316,20 @@ const Leads = () => {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+1 (555) 123-4567"
+                  className="bg-white/80"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Status
                 </label>
                 <Select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                  className="bg-white/80"
                 >
                   <option value="New">New</option>
                   <option value="Contacted">Contacted</option>
@@ -330,13 +338,14 @@ const Leads = () => {
                   <option value="Closed Lost">Closed Lost</option>
                 </Select>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Source
                 </label>
                 <Select
                   value={formData.source}
                   onChange={(e) => setFormData({ ...formData, source: e.target.value })}
+                  className="bg-white/80"
                 >
                   <option value="Website Form">Website Form</option>
                   <option value="LinkedIn">LinkedIn</option>
@@ -347,13 +356,13 @@ const Leads = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Notes
               </label>
               <textarea
-                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-                rows={3}
+                className="w-full px-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 resize-none shadow-sm"
+                rows={4}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 placeholder="Additional notes about this lead"

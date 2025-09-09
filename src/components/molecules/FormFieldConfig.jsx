@@ -8,25 +8,26 @@ const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate, isTemplate 
 if (!field) {
     // Template/Form Settings
     return (
-      <div className="space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+<div className="space-y-8">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             {isTemplate ? 'Template Name' : 'Form Name'}
           </label>
           <Input
             value={form?.name || ""}
             onChange={(e) => onFormUpdate(prev => ({ ...prev, name: e.target.value }))}
             placeholder={isTemplate ? "Enter template name" : "Enter form name"}
+            className="bg-white/80"
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             Description
           </label>
           <textarea
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            rows={3}
+            className="w-full px-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 shadow-sm resize-none"
+            rows={4}
             value={form?.description || ""}
             onChange={(e) => onFormUpdate(prev => ({ ...prev, description: e.target.value }))}
             placeholder={isTemplate ? "Template description" : "Optional form description"}
@@ -35,13 +36,14 @@ if (!field) {
 
         {isTemplate && (
           <>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Category
               </label>
               <Select
                 value={form?.category || "consulting"}
                 onChange={(e) => onFormUpdate(prev => ({ ...prev, category: e.target.value }))}
+                className="bg-white/80"
               >
                 <option value="web-design">Web Design</option>
                 <option value="marketing">Marketing</option>
@@ -53,27 +55,31 @@ if (!field) {
             </div>
 
             {/* Branding Section */}
-            <div className="border-t pt-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
-                <ApperIcon name="Palette" className="w-4 h-4 mr-2" />
+<div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 rounded-xl p-6 border border-indigo-200/60">
+              <h4 className="text-sm font-bold text-slate-900 mb-6 flex items-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-purple-500/20">
+                  <ApperIcon name="Palette" className="w-4 h-4 text-white" />
+                </div>
                 Branding & Layout
               </h4>
               
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-slate-700 mb-3">
                     Primary Color
                   </label>
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="color"
-                      value={form?.branding?.primaryColor || "#4F46E5"}
-                      onChange={(e) => onFormUpdate(prev => ({
-                        ...prev,
-                        branding: { ...prev.branding, primaryColor: e.target.value }
-                      }))}
-                      className="w-8 h-8 rounded border border-gray-300"
-                    />
+                  <div className="flex items-center space-x-3">
+                    <div className="relative">
+                      <input
+                        type="color"
+                        value={form?.branding?.primaryColor || "#4F46E5"}
+                        onChange={(e) => onFormUpdate(prev => ({
+                          ...prev,
+                          branding: { ...prev.branding, primaryColor: e.target.value }
+                        }))}
+                        className="w-10 h-10 rounded-xl border-2 border-white shadow-lg cursor-pointer"
+                      />
+                    </div>
                     <Input
                       value={form?.branding?.primaryColor || "#4F46E5"}
                       onChange={(e) => onFormUpdate(prev => ({
@@ -81,25 +87,27 @@ if (!field) {
                         branding: { ...prev.branding, primaryColor: e.target.value }
                       }))}
                       placeholder="#4F46E5"
-                      className="flex-1"
+                      className="flex-1 bg-white/80"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-slate-700 mb-3">
                     Secondary Color
                   </label>
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="color"
-                      value={form?.branding?.secondaryColor || "#7C3AED"}
-                      onChange={(e) => onFormUpdate(prev => ({
-                        ...prev,
-                        branding: { ...prev.branding, secondaryColor: e.target.value }
-                      }))}
-                      className="w-8 h-8 rounded border border-gray-300"
-                    />
+                  <div className="flex items-center space-x-3">
+                    <div className="relative">
+                      <input
+                        type="color"
+                        value={form?.branding?.secondaryColor || "#7C3AED"}
+                        onChange={(e) => onFormUpdate(prev => ({
+                          ...prev,
+                          branding: { ...prev.branding, secondaryColor: e.target.value }
+                        }))}
+                        className="w-10 h-10 rounded-xl border-2 border-white shadow-lg cursor-pointer"
+                      />
+                    </div>
                     <Input
                       value={form?.branding?.secondaryColor || "#7C3AED"}
                       onChange={(e) => onFormUpdate(prev => ({
@@ -107,13 +115,13 @@ if (!field) {
                         branding: { ...prev.branding, secondaryColor: e.target.value }
                       }))}
                       placeholder="#7C3AED"
-                      className="flex-1"
+                      className="flex-1 bg-white/80"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-slate-700 mb-3">
                     Font Family
                   </label>
                   <Select
@@ -122,6 +130,7 @@ if (!field) {
                       ...prev,
                       branding: { ...prev.branding, fontFamily: e.target.value }
                     }))}
+                    className="bg-white/80"
                   >
                     <option value="Inter">Inter</option>
                     <option value="Roboto">Roboto</option>
@@ -133,7 +142,7 @@ if (!field) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-slate-700 mb-3">
                     Logo Position
                   </label>
                   <Select
@@ -142,6 +151,7 @@ if (!field) {
                       ...prev,
                       branding: { ...prev.branding, logoPosition: e.target.value }
                     }))}
+                    className="bg-white/80"
                   >
                     <option value="top-left">Top Left</option>
                     <option value="top-center">Top Center</option>
@@ -150,7 +160,7 @@ if (!field) {
                   </Select>
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-center bg-white/60 rounded-lg p-4 border border-white/40">
                   <input
                     type="checkbox"
                     id="letterhead"
@@ -159,40 +169,42 @@ if (!field) {
                       ...prev,
                       branding: { ...prev.branding, letterhead: e.target.checked }
                     }))}
-                    className="mr-2 text-primary-500 rounded"
+                    className="mr-3 text-indigo-500 w-4 h-4 rounded focus:ring-indigo-500/20"
                   />
-                  <label htmlFor="letterhead" className="text-sm text-gray-700">
+                  <label htmlFor="letterhead" className="text-sm font-medium text-slate-700">
                     Include company letterhead
                   </label>
                 </div>
               </div>
             </div>
 
-            {/* Content Placeholders */}
-            <div className="border-t pt-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
-                <ApperIcon name="Code" className="w-4 h-4 mr-2" />
+{/* Content Placeholders */}
+            <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-200/60">
+              <h4 className="text-sm font-bold text-slate-900 mb-6 flex items-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-emerald-500/20">
+                  <ApperIcon name="Code" className="w-4 h-4 text-white" />
+                </div>
                 Content Placeholders
               </h4>
-              <div className="space-y-3">
-                <div className="text-sm text-gray-600 mb-2">
+              <div className="space-y-4">
+                <div className="text-sm text-slate-600 leading-relaxed">
                   Use these placeholders in your content that will be replaced when generating proposals:
                 </div>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[CLIENT_NAME]</div>
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[COMPANY_NAME]</div>
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[PROJECT_NAME]</div>
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[DATE]</div>
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[PROPOSAL_NUMBER]</div>
-                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[TOTAL_AMOUNT]</div>
+                <div className="grid grid-cols-2 gap-3 text-xs">
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[CLIENT_NAME]</div>
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[COMPANY_NAME]</div>
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[PROJECT_NAME]</div>
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[DATE]</div>
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[PROPOSAL_NUMBER]</div>
+                  <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg font-mono border border-emerald-200/40 shadow-sm">[TOTAL_AMOUNT]</div>
                 </div>
               </div>
             </div>
           </>
         )}
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+<div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             {isTemplate ? 'Accept Button Text' : 'Submit Button Text'}
           </label>
           <Input
@@ -202,16 +214,17 @@ if (!field) {
               settings: { ...prev.settings, submitText: e.target.value }
             }))}
             placeholder={isTemplate ? "Accept Proposal" : "Submit button text"}
+            className="bg-white/80"
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             Success Message
           </label>
           <textarea
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            rows={3}
+            className="w-full px-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 shadow-sm resize-none"
+            rows={4}
             value={form?.settings?.successMessage || ""}
             onChange={(e) => onFormUpdate(prev => ({
               ...prev,
@@ -221,8 +234,8 @@ if (!field) {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             Theme
           </label>
           <Select
@@ -231,6 +244,7 @@ if (!field) {
               ...prev,
               settings: { ...prev.settings, theme: e.target.value }
             }))}
+            className="bg-white/80"
           >
             <option value="default">Default</option>
             <option value="minimal">Minimal</option>
@@ -240,21 +254,23 @@ if (!field) {
           </Select>
         </div>
 
-        {!isTemplate && (
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="allowMultiple"
-              checked={form?.settings?.allowMultiple || false}
-              onChange={(e) => onFormUpdate(prev => ({
-                ...prev,
-                settings: { ...prev.settings, allowMultiple: e.target.checked }
-              }))}
-              className="mr-2 text-primary-500 rounded"
-            />
-            <label htmlFor="allowMultiple" className="text-sm text-gray-700">
-              Allow multiple submissions from same user
-            </label>
+{!isTemplate && (
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="allowMultiple"
+                checked={form?.settings?.allowMultiple || false}
+                onChange={(e) => onFormUpdate(prev => ({
+                  ...prev,
+                  settings: { ...prev.settings, allowMultiple: e.target.checked }
+                }))}
+                className="mr-3 text-indigo-500 w-4 h-4 rounded focus:ring-indigo-500/20"
+              />
+              <label htmlFor="allowMultiple" className="text-sm font-medium text-slate-700">
+                Allow multiple submissions from same user
+              </label>
+            </div>
           </div>
         )}
       </div>
@@ -288,144 +304,165 @@ if (!field) {
   const hasOptions = ["select", "radio", "checkbox"].includes(field.type)
 
   return (
-    <div className="space-y-6">
-      <div className="pb-4 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
-          <ApperIcon name="Settings" className="w-4 h-4 text-gray-500" />
-          <h4 className="font-medium text-gray-900 capitalize">
+<div className="space-y-6">
+      <div className="pb-6 border-b border-slate-200/60 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <ApperIcon name="Settings" className="w-5 h-5 text-white" />
+          </div>
+          <h4 className="font-bold text-slate-900 capitalize text-lg">
             {field.type} Field Settings
           </h4>
         </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+<div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+        <label className="block text-sm font-semibold text-slate-700 mb-3">
           Field Label
         </label>
         <Input
           value={field.label}
           onChange={(e) => updateField({ label: e.target.value })}
           placeholder="Enter field label"
+          className="bg-white/80"
         />
       </div>
 
       {field.type !== "checkbox" && field.type !== "radio" && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             Placeholder Text
           </label>
           <Input
             value={field.placeholder || ""}
             onChange={(e) => updateField({ placeholder: e.target.value })}
             placeholder="Enter placeholder text"
+            className="bg-white/80"
           />
         </div>
       )}
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+      <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+        <label className="block text-sm font-semibold text-slate-700 mb-3">
           Help Text
         </label>
         <textarea
-          className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          rows={2}
+          className="w-full px-4 py-3 border border-slate-200 bg-white/80 backdrop-blur-sm rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 shadow-sm resize-none"
+          rows={3}
           value={field.helpText || ""}
           onChange={(e) => updateField({ helpText: e.target.value })}
           placeholder="Optional help text"
         />
       </div>
 
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="required"
-          checked={field.required || false}
-          onChange={(e) => updateField({ required: e.target.checked })}
-          className="mr-2 text-primary-500 rounded"
-        />
-        <label htmlFor="required" className="text-sm text-gray-700">
-          Required field
-        </label>
+<div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="required"
+            checked={field.required || false}
+            onChange={(e) => updateField({ required: e.target.checked })}
+            className="mr-3 text-indigo-500 w-4 h-4 rounded focus:ring-indigo-500/20"
+          />
+          <label htmlFor="required" className="text-sm font-medium text-slate-700">
+            Required field
+          </label>
+        </div>
       </div>
 
-      {hasOptions && (
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="block text-sm font-medium text-gray-700">
+{hasOptions && (
+        <div className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 rounded-xl p-6 border border-amber-200/60">
+          <div className="flex items-center justify-between mb-6">
+            <label className="block text-sm font-bold text-slate-700 flex items-center">
+              <div className="w-6 h-6 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-2 shadow-sm">
+                <ApperIcon name="List" className="w-3 h-3 text-white" />
+              </div>
               Options
             </label>
             <Button
               size="sm"
-              variant="ghost"
+              variant="secondary"
               onClick={addOption}
               icon="Plus"
+              className="bg-white/80 hover:bg-white border-amber-200/60"
             >
               Add Option
             </Button>
           </div>
           
-          <div className="space-y-2">
+          <div className="space-y-3">
             {(field.options || []).map((option, index) => (
-              <div key={index} className="flex items-center space-x-2">
+              <div key={index} className="flex items-center space-x-3 bg-white/60 rounded-lg p-3 border border-white/40">
                 <Input
                   value={option}
                   onChange={(e) => updateOption(index, e.target.value)}
                   placeholder={`Option ${index + 1}`}
+                  className="bg-white/80 flex-1"
                 />
                 <Button
                   size="sm"
                   variant="ghost"
                   onClick={() => removeOption(index)}
                   icon="Trash2"
-                  className="text-red-500 hover:text-red-700"
+                  className="text-red-500 hover:text-red-700 hover:bg-red-50"
                 />
               </div>
             ))}
           </div>
           
           {(!field.options || field.options.length === 0) && (
-            <p className="text-sm text-gray-500 text-center py-4">
-              No options added yet
-            </p>
+            <div className="text-center py-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <ApperIcon name="Plus" className="w-6 h-6 text-amber-600" />
+              </div>
+              <p className="text-sm text-slate-500">
+                No options added yet
+              </p>
+            </div>
           )}
         </div>
       )}
 
-      {field.type === "number" && (
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Minimum Value
-            </label>
-            <Input
-              type="number"
-              value={field.min || ""}
-              onChange={(e) => updateField({ min: e.target.value })}
-              placeholder="Min"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Maximum Value
-            </label>
-            <Input
-              type="number"
-              value={field.max || ""}
-              onChange={(e) => updateField({ max: e.target.value })}
-              placeholder="Max"
-            />
+{field.type === "number" && (
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                Minimum Value
+              </label>
+              <Input
+                type="number"
+                value={field.min || ""}
+                onChange={(e) => updateField({ min: e.target.value })}
+                placeholder="Min"
+                className="bg-white/80"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
+                Maximum Value
+              </label>
+              <Input
+                type="number"
+                value={field.max || ""}
+                onChange={(e) => updateField({ max: e.target.value })}
+                placeholder="Max"
+                className="bg-white/80"
+              />
+            </div>
           </div>
         </div>
       )}
 
-      {field.type === "textarea" && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+{field.type === "textarea" && (
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+          <label className="block text-sm font-semibold text-slate-700 mb-3">
             Rows
           </label>
           <Select
             value={field.rows || 3}
             onChange={(e) => updateField({ rows: parseInt(e.target.value) })}
+            className="bg-white/80"
           >
             <option value={2}>2 rows</option>
             <option value={3}>3 rows</option>

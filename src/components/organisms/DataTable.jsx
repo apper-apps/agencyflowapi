@@ -74,23 +74,25 @@ const DataTable = ({
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+<thead className="bg-gradient-to-r from-slate-50 to-blue-50 backdrop-blur-sm">
               <tr>
                 {columns.map((column) => (
                   <th
                     key={column.key}
-                    className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
-                      column.sortable ? "cursor-pointer hover:bg-gray-100" : ""
+                    className={`px-6 py-4 text-left text-xs font-bold text-slate-700 uppercase tracking-wider ${
+                      column.sortable ? "cursor-pointer hover:bg-gradient-to-r hover:from-slate-100 hover:to-blue-100 transition-all duration-200" : ""
                     }`}
                     onClick={() => column.sortable && handleSort(column.key)}
                   >
-                    <div className="flex items-center space-x-1">
+                    <div className="flex items-center space-x-2">
                       <span>{column.title}</span>
                       {column.sortable && sortField === column.key && (
-                        <ApperIcon 
-                          name={sortDirection === "asc" ? "ChevronUp" : "ChevronDown"} 
-                          className="w-4 h-4" 
-                        />
+                        <div className="w-5 h-5 bg-indigo-500 rounded-full flex items-center justify-center">
+                          <ApperIcon 
+                            name={sortDirection === "asc" ? "ChevronUp" : "ChevronDown"} 
+                            className="w-3 h-3 text-white" 
+                          />
+                        </div>
                       )}
                     </div>
                   </th>
@@ -101,21 +103,21 @@ const DataTable = ({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {sortedData.map((item, index) => (
+{sortedData.map((item, index) => (
                 <motion.tr
                   key={item.Id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.05 }}
-                  className="hover:bg-gray-50 transition-colors duration-150"
+                  className="hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-blue-50/30 transition-all duration-200 border-b border-slate-100/60"
                 >
                   {columns.map((column) => (
-                    <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm">
+                    <td key={column.key} className="px-6 py-5 whitespace-nowrap text-sm font-medium text-slate-700">
                       {column.render ? column.render(item[column.key], item) : item[column.key]}
                     </td>
                   ))}
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="flex items-center justify-end space-x-2">
+                  <td className="px-6 py-5 whitespace-nowrap text-right text-sm font-medium">
+                    <div className="flex items-center justify-end space-x-1">
                       {actions.map((action, idx) => (
                         <Button
                           key={idx}
@@ -123,7 +125,7 @@ const DataTable = ({
                           size="sm"
                           icon={action.icon}
                           onClick={() => action.onClick(item)}
-                          className="text-gray-400 hover:text-gray-600"
+                          className="text-slate-400 hover:text-slate-600 hover:bg-slate-100/60 rounded-lg"
                         >
                           {action.label}
                         </Button>
@@ -134,7 +136,7 @@ const DataTable = ({
                           size="sm"
                           icon="Edit"
                           onClick={() => onEdit(item)}
-                          className="text-gray-400 hover:text-primary-600"
+                          className="text-slate-400 hover:text-indigo-600 hover:bg-indigo-50/60 rounded-lg"
                         />
                       )}
                       {onDelete && (
@@ -143,7 +145,7 @@ const DataTable = ({
                           size="sm"
                           icon="Trash2"
                           onClick={() => onDelete(item)}
-                          className="text-gray-400 hover:text-error-600"
+                          className="text-slate-400 hover:text-red-600 hover:bg-red-50/60 rounded-lg"
                         />
                       )}
                     </div>

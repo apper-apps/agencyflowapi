@@ -31,16 +31,16 @@ const FormCanvas = ({
         layout
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`relative group p-4 border-2 rounded-lg transition-all cursor-pointer ${
+className={`relative group p-6 border-2 rounded-xl transition-all duration-200 cursor-pointer backdrop-blur-sm ${
           isSelected 
-            ? "border-primary-500 bg-primary-50" 
-            : "border-gray-200 bg-white hover:border-gray-300"
+            ? "border-indigo-500 bg-gradient-to-br from-indigo-50/80 via-blue-50/60 to-purple-50/40 shadow-lg shadow-indigo-500/20" 
+            : "border-slate-200 bg-white/80 hover:border-slate-300 hover:shadow-md hover:shadow-slate-300/20"
         }`}
         onClick={() => onFieldSelect(field)}
       >
         {/* Field Controls */}
-        <div className={`absolute top-2 right-2 flex space-x-1 transition-opacity ${
-          isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+        <div className={`absolute top-3 right-3 flex space-x-1.5 transition-all duration-200 ${
+          isSelected ? "opacity-100 scale-100" : "opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100"
         }`}>
           <button
             onClick={(e) => {
@@ -50,7 +50,7 @@ const FormCanvas = ({
                 onFieldsReorder(index, index - 1)
               }
             }}
-            className="p-1 text-gray-400 hover:text-gray-600 bg-white rounded shadow-sm"
+            className="p-1.5 text-slate-400 hover:text-slate-600 bg-white/90 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
             disabled={index === 0}
           >
             <ApperIcon name="ChevronUp" size={14} />
@@ -63,7 +63,7 @@ const FormCanvas = ({
                 onFieldsReorder(index, index + 1)
               }
             }}
-            className="p-1 text-gray-400 hover:text-gray-600 bg-white rounded shadow-sm"
+            className="p-1.5 text-slate-400 hover:text-slate-600 bg-white/90 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
             disabled={index === form.fields.length - 1}
           >
             <ApperIcon name="ChevronDown" size={14} />
@@ -73,23 +73,23 @@ const FormCanvas = ({
               e.stopPropagation()
               onFieldRemove(field.id)
             }}
-            className="p-1 text-red-400 hover:text-red-600 bg-white rounded shadow-sm"
+            className="p-1.5 text-red-400 hover:text-red-600 bg-white/90 backdrop-blur-sm rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-110"
           >
             <ApperIcon name="Trash2" size={14} />
           </button>
         </div>
 
         {/* Field Preview */}
-        <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">
+<div className="space-y-3">
+          <label className="block text-sm font-semibold text-slate-700 tracking-wide">
             {field.label}
-            {field.required && <span className="text-red-500 ml-1">*</span>}
+            {field.required && <span className="text-red-500 ml-1 text-base">*</span>}
           </label>
           
           {renderFieldPreview(field)}
           
           {field.helpText && (
-            <p className="text-xs text-gray-500">{field.helpText}</p>
+            <p className="text-xs text-slate-500 italic leading-relaxed">{field.helpText}</p>
           )}
         </div>
       </motion.div>
@@ -97,7 +97,7 @@ const FormCanvas = ({
   }
 
   const renderFieldPreview = (field) => {
-    const baseInputClass = "w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+const baseInputClass = "w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-300 bg-white/80 backdrop-blur-sm shadow-sm"
 
     switch (field.type) {
       case "text":
@@ -117,7 +117,7 @@ const FormCanvas = ({
           <textarea
             placeholder={field.placeholder}
             rows={3}
-            className={baseInputClass}
+            className={baseInputClass + " resize-none"}
             disabled
           />
         )
@@ -136,17 +136,17 @@ const FormCanvas = ({
       
       case "radio":
         return (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {field.options?.map((option, index) => (
-              <label key={index} className="flex items-center">
+              <label key={index} className="flex items-center group cursor-pointer">
                 <input
                   type="radio"
                   name={field.id}
                   value={option}
-                  className="mr-2 text-primary-500"
+                  className="mr-3 text-indigo-500 w-4 h-4 transition-all duration-200"
                   disabled
                 />
-                <span className="text-sm text-gray-700">{option}</span>
+                <span className="text-sm text-slate-700 group-hover:text-slate-900 transition-colors duration-200">{option}</span>
               </label>
             ))}
           </div>
@@ -154,16 +154,16 @@ const FormCanvas = ({
       
       case "checkbox":
         return (
-          <div className="space-y-2">
+          <div className="space-y-3">
             {field.options?.map((option, index) => (
-              <label key={index} className="flex items-center">
+              <label key={index} className="flex items-center group cursor-pointer">
                 <input
                   type="checkbox"
                   value={option}
-                  className="mr-2 text-primary-500 rounded"
+                  className="mr-3 text-indigo-500 w-4 h-4 rounded transition-all duration-200"
                   disabled
                 />
-                <span className="text-sm text-gray-700">{option}</span>
+                <span className="text-sm text-slate-700 group-hover:text-slate-900 transition-colors duration-200">{option}</span>
               </label>
             ))}
           </div>
@@ -190,7 +190,7 @@ const FormCanvas = ({
       
       default:
         return (
-          <div className="p-3 bg-gray-100 rounded-md text-center text-gray-500 text-sm">
+          <div className="p-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl text-center text-slate-500 text-sm border border-slate-200/60">
             Unknown field type: {field.type}
           </div>
         )
@@ -198,44 +198,46 @@ const FormCanvas = ({
   }
 
   return (
-    <div
+<div
       ref={drop}
-      className={`min-h-96 rounded-lg border-2 border-dashed transition-colors ${
+      className={`min-h-[600px] rounded-2xl border-2 border-dashed transition-all duration-300 backdrop-blur-sm ${
         isOver 
-          ? "border-primary-500 bg-primary-50" 
-          : "border-gray-300 bg-white"
+          ? "border-indigo-500 bg-gradient-to-br from-indigo-50/80 via-blue-50/60 to-purple-50/40 shadow-lg shadow-indigo-500/20" 
+          : "border-slate-300 bg-white/60 hover:bg-white/80 hover:border-slate-400"
       }`}
     >
-      {form.fields.length === 0 ? (
-        <div className="flex items-center justify-center h-96">
+{form.fields.length === 0 ? (
+        <div className="flex items-center justify-center h-[600px]">
           <div className="text-center">
-            <ApperIcon name="MousePointer2" className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Start Building Your Form</h3>
-            <p className="text-gray-500 mb-4">
-              Drag form fields from the left panel to start creating your form
+            <div className="w-20 h-20 bg-gradient-to-br from-indigo-100 via-purple-100 to-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-indigo-500/10">
+              <ApperIcon name="MousePointer2" className="w-10 h-10 text-indigo-500" />
+            </div>
+            <h3 className="text-xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-3">Start Building Your Form</h3>
+            <p className="text-slate-500 mb-6 max-w-sm leading-relaxed">
+              Drag form fields from the left panel to start creating your professional form
             </p>
           </div>
         </div>
       ) : (
         <div className="p-6">
-          {/* Form Header */}
-          <div className="mb-8 pb-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+{/* Form Header */}
+          <div className="mb-10 pb-8 border-b border-slate-200/60">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-3">
               {form.name}
             </h2>
             {form.description && (
-              <p className="text-gray-600">{form.description}</p>
+              <p className="text-slate-600 leading-relaxed">{form.description}</p>
             )}
           </div>
 
           {/* Form Fields */}
-          <div className="space-y-4 mb-8">
+          <div className="space-y-6 mb-10">
             {form.fields.map((field, index) => renderField(field, index))}
           </div>
 
           {/* Submit Button Preview */}
-          <div className="pt-6 border-t border-gray-200">
-            <Button className="pointer-events-none">
+          <div className="pt-8 border-t border-slate-200/60 bg-gradient-to-r from-white/60 to-slate-50/40 rounded-xl p-6 -mx-6">
+            <Button className="pointer-events-none shadow-lg shadow-indigo-500/20">
               {form.settings?.submitText || "Submit"}
             </Button>
           </div>

@@ -4,10 +4,10 @@ import ApperIcon from "@/components/ApperIcon"
 
 const Header = ({ title, onSearch }) => {
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
+<header className="bg-white/80 backdrop-blur-xl shadow-lg shadow-slate-200/50 border-b border-white/20 px-6 py-4 relative overflow-hidden">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+<h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent tracking-tight">
             {title}
           </h1>
         </div>
@@ -22,14 +22,14 @@ const Header = ({ title, onSearch }) => {
           )}
           
           <div className="flex items-center space-x-2">
-            <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+<button className="p-2.5 text-slate-400 hover:text-slate-600 hover:bg-gradient-to-br hover:from-white hover:to-slate-50 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-slate-200/50 hover:scale-105 border border-transparent hover:border-white/60">
               <ApperIcon name="Bell" className="h-5 w-5" />
             </button>
-            <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+            <button className="p-2.5 text-slate-400 hover:text-slate-600 hover:bg-gradient-to-br hover:from-white hover:to-slate-50 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-slate-200/50 hover:scale-105 border border-transparent hover:border-white/60">
               <ApperIcon name="Settings" className="h-5 w-5" />
             </button>
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-md">
-              <ApperIcon name="User" className="w-4 h-4 text-white" />
+            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/25 ring-2 ring-white/50 hover:scale-105 transition-transform duration-200">
+              <ApperIcon name="User" className="w-5 h-5 text-white" />
             </div>
           </div>
         </div>

@@ -213,17 +213,17 @@ const Tasks = () => {
   if (error) return <Error message={error} onRetry={loadData} />
 
   return (
-    <div className="h-full flex flex-col">
+<div className="h-full flex flex-col">
       <Header title="Tasks" onSearch={handleSearch} />
       
       <div className="flex-1 p-6 overflow-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-1">
+        <div className="mb-8 flex justify-between items-start">
+          <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-6 border border-slate-200/60 flex-1 mr-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-2">
               Task Management
             </h2>
-            <p className="text-gray-600">
-              Assign tasks, track progress, and meet deadlines
+            <p className="text-slate-600 leading-relaxed">
+              Assign tasks, track progress, and meet deadlines effectively
             </p>
           </div>
           <Button
@@ -240,6 +240,7 @@ const Tasks = () => {
               setIsModalOpen(true)
             }}
             icon="Plus"
+            className="px-6 py-4"
           >
             Add Task
           </Button>
@@ -250,18 +251,20 @@ const Tasks = () => {
             title="No tasks found"
             description="Break down your projects into manageable tasks"
             actionText="Add Task"
-            icon="CheckSquare"
+            icon="ListTodo"
             onAction={() => setIsModalOpen(true)}
           />
         ) : (
-          <DataTable
-            data={filteredTasks}
-            columns={columns}
-            actions={actions}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            emptyMessage="No tasks match your search"
-          />
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200/60 overflow-hidden">
+            <DataTable
+              data={filteredTasks}
+              columns={columns}
+              actions={actions}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              emptyMessage="No tasks match your search"
+            />
+          </div>
         )}
 
         {/* Task Form Modal */}
@@ -286,9 +289,9 @@ const Tasks = () => {
             </Button>
           ]}
         >
-          <form id="task-form" onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+          <form id="task-form" onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Task Title *
               </label>
               <Input
@@ -297,17 +300,19 @@ const Tasks = () => {
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 placeholder="Enter task description"
                 required
+                className="bg-white/80"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+              <label className="block text-sm font-semibold text-slate-700 mb-3">
                 Project *
               </label>
               <Select
                 value={formData.projectId}
                 onChange={(e) => setFormData({ ...formData, projectId: e.target.value })}
                 required
+                className="bg-white/80"
               >
                 <option value="">Select a project</option>
                 {projects.map(project => (
@@ -318,15 +323,16 @@ const Tasks = () => {
               </Select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Assigned To *
                 </label>
                 <Select
                   value={formData.assignedTo}
                   onChange={(e) => setFormData({ ...formData, assignedTo: e.target.value })}
                   required
+                  className="bg-white/80"
                 >
                   <option value="">Select team member</option>
                   <option value="Development Team">Development Team</option>
@@ -335,13 +341,14 @@ const Tasks = () => {
                   <option value="Content Team">Content Team</option>
                 </Select>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Priority
                 </label>
                 <Select
                   value={formData.priority}
                   onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+                  className="bg-white/80"
                 >
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
@@ -350,24 +357,26 @@ const Tasks = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Due Date
                 </label>
                 <Input
                   type="date"
                   value={formData.dueDate}
                   onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
+                  className="bg-white/80"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+              <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-4 border border-slate-200/60">
+                <label className="block text-sm font-semibold text-slate-700 mb-3">
                   Status
                 </label>
                 <Select
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                  className="bg-white/80"
                 >
                   <option value="To Do">To Do</option>
                   <option value="In Progress">In Progress</option>

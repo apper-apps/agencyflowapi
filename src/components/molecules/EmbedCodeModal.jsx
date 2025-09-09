@@ -1,8 +1,9 @@
-import React, { useState } from "react"
-import Modal from "@/components/organisms/Modal"
-import Button from "@/components/atoms/Button"
-import Select from "@/components/atoms/Select"
-import { toast } from "react-toastify"
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
+import Modal from "@/components/organisms/Modal";
 
 const EmbedCodeModal = ({ isOpen, onClose, form }) => {
   const [embedType, setEmbedType] = useState("inline")
@@ -100,120 +101,110 @@ function openAgencyFlowProposal(templateId) {
   ]
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Embed Form Code"
-    >
-      <div className="space-y-6">
+    <Modal isOpen={isOpen} onClose={onClose} title="Embed Form Code">
+    <div className="space-y-6">
         {/* Form Info */}
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <h4 className="font-medium text-gray-900 mb-1">{form.name}</h4>
-          <p className="text-sm text-gray-600">
-            {form.fields?.length || 0} fields • Created {new Date(form.createdAt || Date.now()).toLocaleDateString()}
-          </p>
+        <div
+            className="bg-gradient-to-r from-indigo-50 via-purple-50 to-blue-50 p-6 rounded-xl border border-indigo-200/60">
+            <h4 className="font-bold text-slate-900 mb-2">{form.name}</h4>
+            <p className="text-sm text-slate-600">
+                {form.fields?.length || 0}fields • Created {new Date(form.createdAt || Date.now()).toLocaleDateString()}
+            </p>
         </div>
-
         {/* Embed Type Selection */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Embed Type
-          </label>
-          <Select
-            value={embedType}
-            onChange={(e) => setEmbedType(e.target.value)}
-          >
-            {embedOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Select>
-          <p className="text-xs text-gray-500 mt-1">
-            {embedOptions.find(opt => opt.value === embedType)?.description}
-          </p>
+        <div
+            className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+            <label className="block text-sm font-semibold text-slate-700 mb-3">Embed Type
+                          </label>
+            <Select
+                value={embedType}
+                onChange={e => setEmbedType(e.target.value)}
+                className="bg-white/80">
+                {embedOptions.map(option => <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>)}
+            </Select>
+            <p className="text-xs text-slate-500 mt-3 italic leading-relaxed">
+                {embedOptions.find(opt => opt.value === embedType)?.description}
+            </p>
         </div>
-
         {/* Generated Code */}
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Generated Embed Code
-            </label>
-            <Button
-              size="sm"
-              variant="secondary"
-              onClick={copyToClipboard}
-              icon={copied ? "Check" : "Copy"}
-            >
-              {copied ? "Copied!" : "Copy Code"}
-            </Button>
-          </div>
-          
-          <div className="relative">
-            <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-xs overflow-x-auto max-h-64 overflow-y-auto">
-              <code>{generateEmbedCode()}</code>
-            </pre>
-          </div>
+        <div
+            className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-xl p-6 border border-slate-700/50">
+            <div className="flex items-center justify-between mb-4">
+                <label className="block text-sm font-semibold text-white flex items-center">
+                    <div
+                        className="w-6 h-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mr-2 shadow-sm">
+                        <ApperIcon name="Code" className="w-3 h-3 text-white" />
+                    </div>Generated Embed Code
+                                </label>
+                <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={copyToClipboard}
+                    icon={copied ? "Check" : "Copy"}
+                    className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20">
+                    {copied ? "Copied!" : "Copy Code"}
+                </Button>
+            </div>
+            <div className="relative">
+                <pre
+                    className="bg-black/50 backdrop-blur-sm text-green-400 p-6 rounded-xl text-xs overflow-x-auto max-h-80 overflow-y-auto border border-slate-700/50 shadow-inner">
+                    <code>{generateEmbedCode()}</code>
+                </pre>
+            </div>
         </div>
-
-        {/* Instructions */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h5 className="font-medium text-blue-900 mb-2">Integration Instructions</h5>
-          <div className="text-sm text-blue-800 space-y-2">
-            {embedType === "inline" && (
-              <div>
-                <p>1. Copy the code above</p>
+    </div>
+    {/* Instructions */}
+    <div
+        className="bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 border border-blue-200/60 rounded-xl p-6">
+        <h5 className="font-bold text-blue-900 mb-4 flex items-center">
+            <div
+                className="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mr-2 shadow-sm">
+                <ApperIcon name="Info" className="w-3 h-3 text-white" />
+            </div>Integration Instructions
+                      </h5>
+        <div className="text-sm text-blue-800 space-y-3">
+            {embedType === "inline" && <div className="space-y-2">
+                <p className="font-medium">1. Copy the code above</p>
                 <p>2. Paste it into your HTML where you want the form to appear</p>
                 <p>3. The form will automatically load and match your site's styling</p>
-              </div>
-            )}
-            
-            {embedType === "iframe" && (
-              <div>
-                <p>1. Copy the iframe code above</p>
+            </div>}
+            {embedType === "iframe" && <div className="space-y-2">
+                <p className="font-medium">1. Copy the iframe code above</p>
                 <p>2. Paste it into your HTML</p>
                 <p>3. Adjust width and height as needed for your layout</p>
-              </div>
-            )}
-            
-            {embedType === "popup" && (
-              <div>
-                <p>1. Copy the button code above</p>
+            </div>}
+            {embedType === "popup" && <div className="space-y-2">
+                <p className="font-medium">1. Copy the button code above</p>
                 <p>2. Paste it into your HTML</p>
                 <p>3. Clicking the button will open the form in a popup window</p>
-              </div>
-            )}
-            
-            {embedType === "redirect" && (
-              <div>
-                <p>1. Copy the link code above</p>
+            </div>}
+            {embedType === "redirect" && <div className="space-y-2">
+                <p className="font-medium">1. Copy the link code above</p>
                 <p>2. Paste it into your HTML</p>
                 <p>3. Visitors will be redirected to a dedicated form page</p>
-              </div>
-            )}
-          </div>
+            </div>}
         </div>
-
-        {/* Form Analytics Note */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <div className="flex items-start space-x-2">
+    </div>
+    {/* Form Analytics Note */}
+    <div
+        className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border border-emerald-200/60 rounded-xl p-6">
+        <div className="flex items-start space-x-4">
             <div className="flex-shrink-0">
-              <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
-              </div>
+                <div
+                    className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                    <ApperIcon name="CheckCircle" className="w-4 h-4 text-white" />
+                </div>
             </div>
             <div>
-              <h5 className="font-medium text-green-900 mb-1">Analytics Included</h5>
-              <p className="text-sm text-green-800">
-                All form submissions are automatically tracked in your AgencyFlow dashboard. 
-                You'll receive email notifications for new submissions.
-              </p>
+                <h5 className="font-bold text-emerald-900 mb-2">Analytics Included</h5>
+                <p className="text-sm text-emerald-800 leading-relaxed">All form submissions are automatically tracked in your AgencyFlow dashboard. 
+                                    You'll receive email notifications for new submissions.
+                                  </p>
             </div>
-          </div>
         </div>
-      </div>
-    </Modal>
+    </div></Modal>
   )
 }
 
