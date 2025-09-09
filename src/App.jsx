@@ -7,19 +7,20 @@ import Leads from "@/components/pages/Leads"
 import Clients from "@/components/pages/Clients"
 import Projects from "@/components/pages/Projects"
 import Tasks from "@/components/pages/Tasks"
-import FormBuilder from "@/components/pages/FormBuilder"
+import ProposalTemplates from "@/components/pages/ProposalTemplates"
+
 function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
-        <Routes>
+<Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
             <Route path="clients" element={<Clients />} />
-<Route path="projects" element={<Projects />} />
+            <Route path="projects" element={<Projects />} />
             <Route path="tasks" element={<Tasks />} />
-            <Route path="forms" element={<FormBuilder />} />
+            <Route path="templates" element={<ProposalTemplates />} />
           </Route>
         </Routes>
         <ToastContainer

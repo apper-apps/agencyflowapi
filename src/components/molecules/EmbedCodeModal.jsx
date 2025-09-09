@@ -16,33 +16,34 @@ const EmbedCodeModal = ({ isOpen, onClose, form }) => {
     
     switch (embedType) {
       case "inline":
-        return `<!-- AgencyFlow Form Embed -->
-<div id="agencyflow-form-${form.Id}"></div>
+return `<!-- AgencyFlow Proposal Template Embed -->
+<div id="agencyflow-template-${form.Id}"></div>
 <script>
 (function() {
   var script = document.createElement('script');
   script.src = '${baseUrl}/embed.js';
-  script.setAttribute('data-form-id', '${form.Id}');
-  script.setAttribute('data-theme', '${form.settings?.theme || 'default'}');
+  script.setAttribute('data-template-id', '${form.Id}');
+  script.setAttribute('data-theme', '${form.settings?.theme || 'professional'}');
+  script.setAttribute('data-type', 'proposal');
   document.head.appendChild(script);
 })();
 </script>`
 
       case "iframe":
-        return `<!-- AgencyFlow Form iFrame -->
+        return `<!-- AgencyFlow Proposal Template iFrame -->
 <iframe 
   src="${formUrl}" 
   width="100%" 
-  height="600" 
+  height="800" 
   frameborder="0" 
   style="border: none; border-radius: 8px;"
   title="${form.name}">
 </iframe>`
 
       case "popup":
-        return `<!-- AgencyFlow Popup Form -->
-<button onclick="openAgencyFlowForm('${form.Id}')" style="
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+        return `<!-- AgencyFlow Popup Proposal -->
+<button onclick="openAgencyFlowProposal('${form.Id}')" style="
+  background: linear-gradient(135deg, ${form.branding?.primaryColor || '#4F46E5'}, ${form.branding?.secondaryColor || '#7C3AED'});
   color: white;
   border: none;
   padding: 12px 24px;
@@ -51,20 +52,20 @@ const EmbedCodeModal = ({ isOpen, onClose, form }) => {
   cursor: pointer;
   transition: transform 0.2s;
 " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-  ${form.settings?.submitText || 'Open Form'}
+  ${form.settings?.submitText || 'View Proposal'}
 </button>
 <script>
-function openAgencyFlowForm(formId) {
-  var popup = window.open('${formUrl}?popup=true', 'agencyflow-form', 'width=600,height=700,scrollbars=yes,resizable=yes');
+function openAgencyFlowProposal(templateId) {
+  var popup = window.open('${formUrl}?popup=true', 'agencyflow-proposal', 'width=800,height=900,scrollbars=yes,resizable=yes');
   popup.focus();
 }
 </script>`
 
       case "redirect":
-        return `<!-- AgencyFlow Form Redirect -->
+        return `<!-- AgencyFlow Proposal Template Redirect -->
 <a href="${formUrl}" target="_blank" style="
   display: inline-block;
-  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  background: linear-gradient(135deg, ${form.branding?.primaryColor || '#4F46E5'}, ${form.branding?.secondaryColor || '#7C3AED'});
   color: white;
   text-decoration: none;
   padding: 12px 24px;
@@ -72,7 +73,7 @@ function openAgencyFlowForm(formId) {
   font-weight: 500;
   transition: transform 0.2s;
 " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-  ${form.settings?.submitText || 'Fill Out Form'} →
+  ${form.settings?.submitText || 'View Proposal'} →
 </a>`
 
       default:

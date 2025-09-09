@@ -13,7 +13,7 @@ const navigation = [
     { name: "Clients", href: "/clients", icon: "Building" },
     { name: "Projects", href: "/projects", icon: "Briefcase" },
     { name: "Tasks", href: "/tasks", icon: "CheckSquare" },
-    { name: "Forms", href: "/forms", icon: "FileText" }
+{ name: "Templates", href: "/templates", icon: "FileTemplate" }
   ]
 
   const toggleMobile = () => setIsMobileOpen(!isMobileOpen)

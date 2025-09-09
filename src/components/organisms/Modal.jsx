@@ -22,7 +22,7 @@ const Modal = ({ isOpen, onClose, title, children, actions }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.2 }}
-                className="relative transform overflow-hidden rounded-lg bg-white shadow-2xl transition-all sm:w-full sm:max-w-lg"
+className="relative transform overflow-hidden rounded-lg bg-white shadow-2xl transition-all sm:w-full sm:max-w-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">

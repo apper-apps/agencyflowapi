@@ -4,46 +4,204 @@ import Select from "@/components/atoms/Select"
 import Button from "@/components/atoms/Button"
 import ApperIcon from "@/components/ApperIcon"
 
-const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate }) => {
-  if (!field) {
-    // Form Settings
+const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate, isTemplate = false }) => {
+if (!field) {
+    // Template/Form Settings
     return (
       <div className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Form Name
+            {isTemplate ? 'Template Name' : 'Form Name'}
           </label>
           <Input
             value={form?.name || ""}
             onChange={(e) => onFormUpdate(prev => ({ ...prev, name: e.target.value }))}
-            placeholder="Enter form name"
+            placeholder={isTemplate ? "Enter template name" : "Enter form name"}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Form Description
+            Description
           </label>
           <textarea
             className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             rows={3}
             value={form?.description || ""}
             onChange={(e) => onFormUpdate(prev => ({ ...prev, description: e.target.value }))}
-            placeholder="Optional form description"
+            placeholder={isTemplate ? "Template description" : "Optional form description"}
           />
         </div>
 
+        {isTemplate && (
+          <>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Category
+              </label>
+              <Select
+                value={form?.category || "consulting"}
+                onChange={(e) => onFormUpdate(prev => ({ ...prev, category: e.target.value }))}
+              >
+                <option value="web-design">Web Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="consulting">Consulting</option>
+                <option value="development">Development</option>
+                <option value="branding">Branding</option>
+                <option value="seo">SEO Services</option>
+              </Select>
+            </div>
+
+            {/* Branding Section */}
+            <div className="border-t pt-6">
+              <h4 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
+                <ApperIcon name="Palette" className="w-4 h-4 mr-2" />
+                Branding & Layout
+              </h4>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Primary Color
+                  </label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="color"
+                      value={form?.branding?.primaryColor || "#4F46E5"}
+                      onChange={(e) => onFormUpdate(prev => ({
+                        ...prev,
+                        branding: { ...prev.branding, primaryColor: e.target.value }
+                      }))}
+                      className="w-8 h-8 rounded border border-gray-300"
+                    />
+                    <Input
+                      value={form?.branding?.primaryColor || "#4F46E5"}
+                      onChange={(e) => onFormUpdate(prev => ({
+                        ...prev,
+                        branding: { ...prev.branding, primaryColor: e.target.value }
+                      }))}
+                      placeholder="#4F46E5"
+                      className="flex-1"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Secondary Color
+                  </label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="color"
+                      value={form?.branding?.secondaryColor || "#7C3AED"}
+                      onChange={(e) => onFormUpdate(prev => ({
+                        ...prev,
+                        branding: { ...prev.branding, secondaryColor: e.target.value }
+                      }))}
+                      className="w-8 h-8 rounded border border-gray-300"
+                    />
+                    <Input
+                      value={form?.branding?.secondaryColor || "#7C3AED"}
+                      onChange={(e) => onFormUpdate(prev => ({
+                        ...prev,
+                        branding: { ...prev.branding, secondaryColor: e.target.value }
+                      }))}
+                      placeholder="#7C3AED"
+                      className="flex-1"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Font Family
+                  </label>
+                  <Select
+                    value={form?.branding?.fontFamily || "Inter"}
+                    onChange={(e) => onFormUpdate(prev => ({
+                      ...prev,
+                      branding: { ...prev.branding, fontFamily: e.target.value }
+                    }))}
+                  >
+                    <option value="Inter">Inter</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Open Sans">Open Sans</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Lato">Lato</option>
+                  </Select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Logo Position
+                  </label>
+                  <Select
+                    value={form?.branding?.logoPosition || "top-left"}
+                    onChange={(e) => onFormUpdate(prev => ({
+                      ...prev,
+                      branding: { ...prev.branding, logoPosition: e.target.value }
+                    }))}
+                  >
+                    <option value="top-left">Top Left</option>
+                    <option value="top-center">Top Center</option>
+                    <option value="top-right">Top Right</option>
+                    <option value="center">Center</option>
+                  </Select>
+                </div>
+
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="letterhead"
+                    checked={form?.branding?.letterhead || false}
+                    onChange={(e) => onFormUpdate(prev => ({
+                      ...prev,
+                      branding: { ...prev.branding, letterhead: e.target.checked }
+                    }))}
+                    className="mr-2 text-primary-500 rounded"
+                  />
+                  <label htmlFor="letterhead" className="text-sm text-gray-700">
+                    Include company letterhead
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Placeholders */}
+            <div className="border-t pt-6">
+              <h4 className="text-sm font-semibold text-gray-900 mb-4 flex items-center">
+                <ApperIcon name="Code" className="w-4 h-4 mr-2" />
+                Content Placeholders
+              </h4>
+              <div className="space-y-3">
+                <div className="text-sm text-gray-600 mb-2">
+                  Use these placeholders in your content that will be replaced when generating proposals:
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[CLIENT_NAME]</div>
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[COMPANY_NAME]</div>
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[PROJECT_NAME]</div>
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[DATE]</div>
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[PROPOSAL_NUMBER]</div>
+                  <div className="bg-gray-50 px-2 py-1 rounded font-mono">[TOTAL_AMOUNT]</div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Submit Button Text
+            {isTemplate ? 'Accept Button Text' : 'Submit Button Text'}
           </label>
           <Input
-            value={form?.settings?.submitText || "Submit"}
+            value={form?.settings?.submitText || (isTemplate ? "Accept Proposal" : "Submit")}
             onChange={(e) => onFormUpdate(prev => ({
               ...prev,
               settings: { ...prev.settings, submitText: e.target.value }
             }))}
-            placeholder="Submit button text"
+            placeholder={isTemplate ? "Accept Proposal" : "Submit button text"}
           />
         </div>
 
@@ -59,16 +217,16 @@ const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate }) => {
               ...prev,
               settings: { ...prev.settings, successMessage: e.target.value }
             }))}
-            placeholder="Message shown after successful submission"
+            placeholder={isTemplate ? "Thank you! We'll be in touch soon." : "Message shown after successful submission"}
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Form Theme
+            Theme
           </label>
           <Select
-            value={form?.settings?.theme || "default"}
+            value={form?.settings?.theme || (isTemplate ? "professional" : "default")}
             onChange={(e) => onFormUpdate(prev => ({
               ...prev,
               settings: { ...prev.settings, theme: e.target.value }
@@ -78,24 +236,27 @@ const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate }) => {
             <option value="minimal">Minimal</option>
             <option value="modern">Modern</option>
             <option value="professional">Professional</option>
+            <option value="elegant">Elegant</option>
           </Select>
         </div>
 
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="allowMultiple"
-            checked={form?.settings?.allowMultiple || false}
-            onChange={(e) => onFormUpdate(prev => ({
-              ...prev,
-              settings: { ...prev.settings, allowMultiple: e.target.checked }
-            }))}
-            className="mr-2 text-primary-500 rounded"
-          />
-          <label htmlFor="allowMultiple" className="text-sm text-gray-700">
-            Allow multiple submissions from same user
-          </label>
-        </div>
+        {!isTemplate && (
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="allowMultiple"
+              checked={form?.settings?.allowMultiple || false}
+              onChange={(e) => onFormUpdate(prev => ({
+                ...prev,
+                settings: { ...prev.settings, allowMultiple: e.target.checked }
+              }))}
+              className="mr-2 text-primary-500 rounded"
+            />
+            <label htmlFor="allowMultiple" className="text-sm text-gray-700">
+              Allow multiple submissions from same user
+            </label>
+          </div>
+        )}
       </div>
     )
   }
