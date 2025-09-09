@@ -250,7 +250,7 @@ title={form.sections ? "Proposal Preview" : "Form Preview"}
 
           {/* Form Fields */}
           <div className={themeClasses.container}>
-            {form.fields.map((field) => (
+{(form.fields || []).map((field) => (
               <div key={field.id} className={themeClasses.field}>
                 <label 
                   htmlFor={field.id}
