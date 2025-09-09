@@ -41,7 +41,6 @@ const FormPreview = ({ isOpen, onClose, form }) => {
   }
 
   const renderFormField = (field) => {
-    const baseInputClass = "w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
 
     switch (field.type) {
       case "text":
@@ -195,7 +194,8 @@ const FormPreview = ({ isOpen, onClose, form }) => {
           label: "text-sm font-semibold text-gray-700 uppercase tracking-wide",
           input: "border border-gray-300 focus:border-primary-500 shadow-sm"
         }
-      default:
+default:
+        const baseInputClass = "w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         return {
           container: "space-y-6",
           field: "",
