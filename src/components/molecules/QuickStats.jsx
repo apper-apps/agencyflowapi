@@ -16,7 +16,7 @@ const QuickStats = ({ stats }) => {
                 {stat.value}
               </p>
               {stat.change && (
-                <p className={`text-sm font-medium ${stat.change >= 0 ? "text-emerald-600" : "text-red-600"} flex items-center`}>
+<div className={`text-sm font-medium ${stat.change >= 0 ? "text-emerald-600" : "text-red-600"} flex items-center`}>
                   <div className={`w-5 h-5 rounded-full ${stat.change >= 0 ? "bg-emerald-100" : "bg-red-100"} flex items-center justify-center mr-2`}>
                     <ApperIcon 
                       name={stat.change >= 0 ? "TrendingUp" : "TrendingDown"} 
@@ -24,7 +24,7 @@ const QuickStats = ({ stats }) => {
                     />
                   </div>
                   {Math.abs(stat.change)}%
-                </p>
+                </div>
               )}
             </div>
             <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-xl shadow-indigo-500/25 group-hover:scale-110 transition-transform duration-200`}>
