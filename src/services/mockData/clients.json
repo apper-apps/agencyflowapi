@@ -1,0 +1,52 @@
+[
+  {
+    "Id": 1,
+    "name": "David Park",
+    "company": "FitLife Gym",
+    "email": "david@fitlifegym.com",
+    "phone": "+1 (555) 456-7890",
+    "status": "Active",
+    "createdAt": "2024-01-10T16:45:00Z",
+    "projects": [1, 2]
+  },
+  {
+    "Id": 2,
+    "name": "Amanda Foster",
+    "company": "Green Garden Supply",
+    "email": "amanda@greengarden.com",
+    "phone": "+1 (555) 789-0123",
+    "status": "Active",
+    "createdAt": "2023-12-15T10:30:00Z",
+    "projects": [3]
+  },
+  {
+    "Id": 3,
+    "name": "Robert Kim",
+    "company": "Urban Design Studio",
+    "email": "robert@urbandesign.com",
+    "phone": "+1 (555) 890-1234",
+    "status": "On Hold",
+    "createdAt": "2023-11-20T14:15:00Z",
+    "projects": [4]
+  },
+  {
+    "Id": 4,
+    "name": "Jennifer Martinez",
+    "company": "Coastal Real Estate",
+    "email": "jennifer@coastal-re.com",
+    "phone": "+1 (555) 901-2345",
+    "status": "Active",
+    "createdAt": "2024-01-05T09:20:00Z",
+    "projects": [5, 6]
+  },
+  {
+    "Id": 5,
+    "name": "Tom Anderson",
+    "company": "Quality Auto Repair",
+    "email": "tom@qualityauto.com",
+    "phone": "+1 (555) 012-3456",
+    "status": "Inactive",
+    "createdAt": "2023-10-12T15:45:00Z",
+    "projects": []
+  }
+]

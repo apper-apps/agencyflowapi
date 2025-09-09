@@ -1,0 +1,68 @@
+[
+  {
+    "Id": 1,
+    "name": "Sarah Johnson",
+    "company": "TechStart Inc",
+    "email": "sarah@techstart.com",
+    "phone": "+1 (555) 123-4567",
+    "status": "New",
+    "source": "Website Form",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "notes": "Interested in digital marketing services for their SaaS platform"
+  },
+  {
+    "Id": 2,
+    "name": "Michael Chen",
+    "company": "GrowthCo",
+    "email": "m.chen@growthco.com",
+    "phone": "+1 (555) 234-5678",
+    "status": "Contacted",
+    "source": "LinkedIn",
+    "createdAt": "2024-01-14T14:20:00Z",
+    "notes": "Looking for complete brand redesign and marketing strategy"
+  },
+  {
+    "Id": 3,
+    "name": "Emily Rodriguez",
+    "company": "Local Eats",
+    "email": "emily@localeats.com",
+    "phone": "+1 (555) 345-6789",
+    "status": "Proposal Sent",
+    "source": "Referral",
+    "createdAt": "2024-01-12T09:15:00Z",
+    "notes": "Restaurant chain needs social media management and local SEO"
+  },
+  {
+    "Id": 4,
+    "name": "David Park",
+    "company": "FitLife Gym",
+    "email": "david@fitlifegym.com",
+    "phone": "+1 (555) 456-7890",
+    "status": "Closed Won",
+    "source": "Google Ads",
+    "createdAt": "2024-01-10T16:45:00Z",
+    "notes": "Signed contract for membership growth campaign"
+  },
+  {
+    "Id": 5,
+    "name": "Lisa Thompson",
+    "company": "Artisan Crafts",
+    "email": "lisa@artisancrafts.com",
+    "phone": "+1 (555) 567-8901",
+    "status": "Closed Lost",
+    "source": "Website Form",
+    "createdAt": "2024-01-08T11:30:00Z",
+    "notes": "Budget constraints led to project cancellation"
+  },
+  {
+    "Id": 6,
+    "name": "James Wilson",
+    "company": "CloudTech Solutions",
+    "email": "james@cloudtech.com",
+    "phone": "+1 (555) 678-9012",
+    "status": "New",
+    "source": "Trade Show",
+    "createdAt": "2024-01-16T13:20:00Z",
+    "notes": "B2B tech company needs lead generation campaign"
+  }
+]

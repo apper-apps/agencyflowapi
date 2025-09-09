@@ -1,0 +1,62 @@
+[
+  {
+    "Id": 1,
+    "name": "Membership Growth Campaign",
+    "clientId": 1,
+    "description": "Digital marketing campaign to increase gym memberships by 40%",
+    "status": "In Progress",
+    "startDate": "2024-01-11T00:00:00Z",
+    "dueDate": "2024-03-11T00:00:00Z",
+    "tasks": [1, 2, 3]
+  },
+  {
+    "Id": 2,
+    "name": "Brand Refresh",
+    "clientId": 1,
+    "description": "Update gym branding and marketing materials",
+    "status": "Planning",
+    "startDate": "2024-02-01T00:00:00Z",
+    "dueDate": "2024-04-01T00:00:00Z",
+    "tasks": [4]
+  },
+  {
+    "Id": 3,
+    "name": "E-commerce Website",
+    "clientId": 2,
+    "description": "Build online store for garden supplies with inventory management",
+    "status": "In Progress",
+    "startDate": "2023-12-16T00:00:00Z",
+    "dueDate": "2024-02-16T00:00:00Z",
+    "tasks": [5, 6, 7]
+  },
+  {
+    "Id": 4,
+    "name": "Portfolio Website",
+    "clientId": 3,
+    "description": "Modern portfolio website showcasing design projects",
+    "status": "Review",
+    "startDate": "2023-11-21T00:00:00Z",
+    "dueDate": "2024-01-21T00:00:00Z",
+    "tasks": [8, 9]
+  },
+  {
+    "Id": 5,
+    "name": "Property Listings Platform",
+    "clientId": 4,
+    "description": "Advanced property search and listing management system",
+    "status": "In Progress",
+    "startDate": "2024-01-06T00:00:00Z",
+    "dueDate": "2024-03-06T00:00:00Z",
+    "tasks": [10, 11, 12]
+  },
+  {
+    "Id": 6,
+    "name": "SEO Optimization",
+    "clientId": 4,
+    "description": "Local SEO campaign for better search visibility",
+    "status": "Completed",
+    "startDate": "2024-01-08T00:00:00Z",
+    "dueDate": "2024-02-08T00:00:00Z",
+    "tasks": [13, 14]
+  }
+]
