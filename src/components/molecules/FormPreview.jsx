@@ -20,7 +20,7 @@ const FormPreview = ({ isOpen, onClose, form }) => {
     setSubmitting(true)
 
     // Validate required fields
-    const requiredFields = form.fields.filter(field => field.required)
+const requiredFields = (form.fields || []).filter(field => field.required)
     const missingFields = requiredFields.filter(field => !formData[field.id])
 
     if (missingFields.length > 0) {
@@ -31,7 +31,7 @@ const FormPreview = ({ isOpen, onClose, form }) => {
 
     // Simulate form submission
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
+await new Promise(resolve => setTimeout(resolve, 1000))
       toast.success(form.settings?.successMessage || "Form submitted successfully!")
       setFormData({})
     } catch (error) {
@@ -42,7 +42,7 @@ const FormPreview = ({ isOpen, onClose, form }) => {
   }
 
 const renderFormField = (field) => {
-    const themeClasses = getThemeClasses()
+const themeClasses = getThemeClasses()
     
     switch (field.type) {
       case "text":
@@ -194,7 +194,7 @@ const renderFormField = (field) => {
   }
 
   const getThemeClasses = () => {
-    const theme = form?.settings?.theme || "default"
+const theme = form?.settings?.theme || "default"
     
     switch (theme) {
       case "minimal":
@@ -229,15 +229,14 @@ default:
     }
   }
 
-  if (!form) return null
+if (!form) return null
 
   const themeClasses = getThemeClasses()
-
   return (
 <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Form Preview"
+title={form.sections ? "Proposal Preview" : "Form Preview"}
     >
       <div className="max-h-[500px] overflow-y-auto bg-gradient-to-b from-slate-50 to-white rounded-xl p-6">
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -276,7 +275,7 @@ default:
               <Button
                 type="submit"
                 loading={submitting}
-                disabled={form.fields.length === 0}
+disabled={(!form.fields || form.fields.length === 0) && (!form.sections || form.sections.length === 0)}
                 className="flex-1"
               >
                 {form.settings?.submitText || "Submit"}

@@ -4,7 +4,7 @@ let forms = [...formsData]
 let nextId = Math.max(...forms.map(f => f.Id), 0) + 1
 
 export const formBuilderService = {
-  async getAll() {
+async getAll() {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 300))
     
@@ -20,7 +20,7 @@ export const formBuilderService = {
     
     const form = forms.find(f => f.Id === id)
     if (!form) {
-      throw new Error(`Form with ID ${id} not found`)
+      throw new Error(`Template with ID ${id} not found`)
     }
     
     return { ...form }
@@ -35,7 +35,9 @@ export const formBuilderService = {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       submissions: 0,
-      isActive: true
+      isActive: true,
+      fields: formData.fields || [],
+      sections: formData.sections || []
     }
     
     forms.push(newForm)
@@ -51,14 +53,16 @@ export const formBuilderService = {
     
     const index = forms.findIndex(f => f.Id === id)
     if (index === -1) {
-      throw new Error(`Form with ID ${id} not found`)
+      throw new Error(`Template with ID ${id} not found`)
     }
     
     const updatedForm = {
       ...forms[index],
       ...formData,
       Id: id, // Preserve original ID
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
+      fields: formData.fields || forms[index].fields || [],
+      sections: formData.sections || forms[index].sections || []
     }
     
     forms[index] = updatedForm
@@ -74,7 +78,7 @@ export const formBuilderService = {
     
     const index = forms.findIndex(f => f.Id === id)
     if (index === -1) {
-      throw new Error(`Form with ID ${id} not found`)
+      throw new Error(`Template with ID ${id} not found`)
     }
     
     forms.splice(index, 1)
@@ -127,7 +131,9 @@ export const formBuilderService = {
       lastSubmission: form.updatedAt,
       conversionRate: Math.random() * 15 + 5, // Simulated 5-20%
       averageCompletionTime: Math.floor(Math.random() * 120 + 30), // 30-150 seconds
-      topExitField: form.fields[Math.floor(Math.random() * form.fields.length)]?.label || null
+      topExitField: (form.fields && form.fields.length > 0) 
+        ? form.fields[Math.floor(Math.random() * form.fields.length)]?.label 
+        : null
     }
   }
 }

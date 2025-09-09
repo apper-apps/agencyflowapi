@@ -1,11 +1,12 @@
-import React from "react"
-import { useDrop } from "react-dnd"
-import { motion } from "framer-motion"
-import ApperIcon from "@/components/ApperIcon"
-import Button from "@/components/atoms/Button"
+import React from "react";
+import { useDrop } from "react-dnd";
+import { motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
 
 const FormCanvas = ({ 
-  form, 
+form, 
   onFieldSelect, 
   onFieldUpdate, 
   onFieldRemove, 
@@ -59,7 +60,7 @@ className={`relative group p-6 border-2 rounded-xl transition-all duration-200 c
             onClick={(e) => {
               e.stopPropagation()
               // Move field down
-              if (index < form.fields.length - 1) {
+if (form.fields && index < form.fields.length - 1) {
                 onFieldsReorder(index, index + 1)
               }
             }}
@@ -206,7 +207,7 @@ const baseInputClass = "w-full px-4 py-3 border border-slate-200 rounded-xl text
           : "border-slate-300 bg-white/60 hover:bg-white/80 hover:border-slate-400"
       }`}
     >
-{form.fields.length === 0 ? (
+{(!form.fields || form.fields.length === 0) ? (
         <div className="flex items-center justify-center h-[600px]">
           <div className="text-center">
             <div className="w-20 h-20 bg-gradient-to-br from-indigo-100 via-purple-100 to-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-indigo-500/10">
@@ -223,22 +224,22 @@ const baseInputClass = "w-full px-4 py-3 border border-slate-200 rounded-xl text
 {/* Form Header */}
           <div className="mb-10 pb-8 border-b border-slate-200/60">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-3">
-              {form.name}
+{form.name || 'Untitled Form'}
             </h2>
             {form.description && (
               <p className="text-slate-600 leading-relaxed">{form.description}</p>
             )}
           </div>
 
-          {/* Form Fields */}
+{/* Form Fields */}
           <div className="space-y-6 mb-10">
-            {form.fields.map((field, index) => renderField(field, index))}
+            {form.fields && form.fields.map((field, index) => renderField(field, index))}
           </div>
 
           {/* Submit Button Preview */}
           <div className="pt-8 border-t border-slate-200/60 bg-gradient-to-r from-white/60 to-slate-50/40 rounded-xl p-6 -mx-6">
             <Button className="pointer-events-none shadow-lg shadow-indigo-500/20">
-              {form.settings?.submitText || "Submit"}
+              {form.settings?.submitText || 'Submit'}
             </Button>
           </div>
         </div>

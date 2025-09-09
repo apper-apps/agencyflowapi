@@ -1,14 +1,15 @@
-import React from "react"
-import Input from "@/components/atoms/Input"
-import Select from "@/components/atoms/Select"
-import Button from "@/components/atoms/Button"
-import ApperIcon from "@/components/ApperIcon"
+import React from "react";
+import ApperIcon from "@/components/ApperIcon";
+import Input from "@/components/atoms/Input";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
+import Layout from "@/components/organisms/Layout";
 
 const FormFieldConfig = ({ field, form, onFieldUpdate, onFormUpdate, isTemplate = false }) => {
-if (!field) {
+  if (!field) {
     // Template/Form Settings
     return (
-<div className="space-y-8">
+      <div className="space-y-8">
         <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
           <label className="block text-sm font-semibold text-slate-700 mb-3">
             {isTemplate ? 'Template Name' : 'Form Name'}
@@ -55,7 +56,7 @@ if (!field) {
             </div>
 
             {/* Branding Section */}
-<div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 rounded-xl p-6 border border-indigo-200/60">
+            <div className="bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 rounded-xl p-6 border border-indigo-200/60">
               <h4 className="text-sm font-bold text-slate-900 mb-6 flex items-center">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-purple-500/20">
                   <ApperIcon name="Palette" className="w-4 h-4 text-white" />
@@ -178,7 +179,7 @@ if (!field) {
               </div>
             </div>
 
-{/* Content Placeholders */}
+            {/* Content Placeholders */}
             <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-200/60">
               <h4 className="text-sm font-bold text-slate-900 mb-6 flex items-center">
                 <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-emerald-500/20">
@@ -203,7 +204,7 @@ if (!field) {
           </>
         )}
 
-<div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
+        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
           <label className="block text-sm font-semibold text-slate-700 mb-3">
             {isTemplate ? 'Accept Button Text' : 'Submit Button Text'}
           </label>
@@ -254,7 +255,7 @@ if (!field) {
           </Select>
         </div>
 
-{!isTemplate && (
+        {!isTemplate && (
           <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6 border border-slate-200/60">
             <div className="flex items-center">
               <input
