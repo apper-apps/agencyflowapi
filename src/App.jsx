@@ -7,7 +7,7 @@ import Leads from "@/components/pages/Leads"
 import Clients from "@/components/pages/Clients"
 import Projects from "@/components/pages/Projects"
 import Tasks from "@/components/pages/Tasks"
-
+import FormBuilder from "@/components/pages/FormBuilder"
 function App() {
   return (
     <BrowserRouter>
@@ -17,8 +17,9 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
             <Route path="clients" element={<Clients />} />
-            <Route path="projects" element={<Projects />} />
+<Route path="projects" element={<Projects />} />
             <Route path="tasks" element={<Tasks />} />
+            <Route path="forms" element={<FormBuilder />} />
           </Route>
         </Routes>
         <ToastContainer

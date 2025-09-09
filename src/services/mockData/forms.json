@@ -1,0 +1,152 @@
+[
+  {
+    "Id": 1,
+    "name": "Contact Us Form",
+    "description": "Get in touch with our team for inquiries and support",
+    "fields": [
+      {
+        "id": "1",
+        "type": "text",
+        "label": "Full Name",
+        "placeholder": "Enter your full name",
+        "required": true
+      },
+      {
+        "id": "2",
+        "type": "email",
+        "label": "Email Address",
+        "placeholder": "Enter your email address",
+        "required": true
+      },
+      {
+        "id": "3",
+        "type": "phone",
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number",
+        "required": false
+      },
+      {
+        "id": "4",
+        "type": "select",
+        "label": "Inquiry Type",
+        "required": true,
+        "options": ["General Inquiry", "Support Request", "Sales Question", "Partnership"]
+      },
+      {
+        "id": "5",
+        "type": "textarea",
+        "label": "Message",
+        "placeholder": "Tell us how we can help you",
+        "required": true,
+        "rows": 4
+      }
+    ],
+    "settings": {
+      "submitText": "Send Message",
+      "successMessage": "Thank you for your message! We'll get back to you within 24 hours.",
+      "theme": "default",
+      "allowMultiple": true
+    },
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-20T14:22:00Z",
+    "submissions": 47,
+    "isActive": true
+  },
+  {
+    "Id": 2,
+    "name": "Lead Generation Form",
+    "description": "Capture qualified leads for your marketing campaigns",
+    "fields": [
+      {
+        "id": "6",
+        "type": "text",
+        "label": "Company Name",
+        "placeholder": "Your company name",
+        "required": true
+      },
+      {
+        "id": "7",
+        "type": "text",
+        "label": "Your Name",
+        "placeholder": "First and last name",
+        "required": true
+      },
+      {
+        "id": "8",
+        "type": "email",
+        "label": "Business Email",
+        "placeholder": "your.name@company.com",
+        "required": true
+      },
+      {
+        "id": "9",
+        "type": "select",
+        "label": "Company Size",
+        "required": true,
+        "options": ["1-10 employees", "11-50 employees", "51-200 employees", "201-1000 employees", "1000+ employees"]
+      },
+      {
+        "id": "10",
+        "type": "radio",
+        "label": "Budget Range",
+        "required": true,
+        "options": ["Under $5,000", "$5,000 - $15,000", "$15,000 - $50,000", "Over $50,000"]
+      },
+      {
+        "id": "11",
+        "type": "checkbox",
+        "label": "Services Interested In",
+        "required": false,
+        "options": ["Web Development", "Digital Marketing", "SEO Services", "Social Media Management", "Content Creation"]
+      }
+    ],
+    "settings": {
+      "submitText": "Get Free Consultation",
+      "successMessage": "Thanks for your interest! Our team will contact you within 2 business hours to schedule your free consultation.",
+      "theme": "professional",
+      "allowMultiple": false
+    },
+    "createdAt": "2024-01-10T09:15:00Z",
+    "updatedAt": "2024-01-22T11:45:00Z",
+    "submissions": 23,
+    "isActive": true
+  },
+  {
+    "Id": 3,
+    "name": "Newsletter Signup",
+    "description": "Stay updated with our latest news and insights",
+    "fields": [
+      {
+        "id": "12",
+        "type": "email",
+        "label": "Email Address",
+        "placeholder": "Enter your email",
+        "required": true
+      },
+      {
+        "id": "13",
+        "type": "text",
+        "label": "First Name",
+        "placeholder": "Optional",
+        "required": false
+      },
+      {
+        "id": "14",
+        "type": "checkbox",
+        "label": "Interests",
+        "required": false,
+        "options": ["Weekly Newsletter", "Product Updates", "Industry News", "Event Invitations"]
+      }
+    ],
+    "settings": {
+      "submitText": "Subscribe Now",
+      "successMessage": "Welcome to our newsletter! Check your email for a confirmation message.",
+      "theme": "minimal",
+      "allowMultiple": false
+    },
+    "createdAt": "2024-01-08T16:20:00Z",
+    "updatedAt": "2024-01-18T13:10:00Z",
+    "submissions": 156,
+    "isActive": true
+  }
+]

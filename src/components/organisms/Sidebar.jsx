@@ -7,12 +7,13 @@ const Sidebar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const location = useLocation()
 
-  const navigation = [
+const navigation = [
     { name: "Dashboard", href: "/", icon: "LayoutDashboard" },
     { name: "Leads", href: "/leads", icon: "Users" },
     { name: "Clients", href: "/clients", icon: "Building" },
     { name: "Projects", href: "/projects", icon: "Briefcase" },
-    { name: "Tasks", href: "/tasks", icon: "CheckSquare" }
+    { name: "Tasks", href: "/tasks", icon: "CheckSquare" },
+    { name: "Forms", href: "/forms", icon: "FileText" }
   ]
 
   const toggleMobile = () => setIsMobileOpen(!isMobileOpen)
