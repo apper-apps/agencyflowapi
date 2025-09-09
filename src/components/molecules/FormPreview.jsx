@@ -1,7 +1,8 @@
-import React, { useState } from "react"
-import Modal from "@/components/organisms/Modal"
-import Button from "@/components/atoms/Button"
-import { toast } from "react-toastify"
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import Select from "@/components/atoms/Select";
+import Button from "@/components/atoms/Button";
+import Modal from "@/components/organisms/Modal";
 
 const FormPreview = ({ isOpen, onClose, form }) => {
   const [formData, setFormData] = useState({})
@@ -40,20 +41,45 @@ const FormPreview = ({ isOpen, onClose, form }) => {
     }
   }
 
-  const renderFormField = (field) => {
-
+const renderFormField = (field) => {
+    const themeClasses = getThemeClasses()
+    
     switch (field.type) {
       case "text":
+        return (
+          <input
+            type="text"
+            id={field.id}
+            className={themeClasses.input}
+            placeholder={field.placeholder || `Enter ${field.label.toLowerCase()}`}
+            value={formData[field.id] || ''}
+            onChange={(e) => handleInputChange(field.id, e.target.value)}
+            required={field.required}
+          />
+        )
+      
       case "email":
+        return (
+          <input
+            type="email"
+            id={field.id}
+            className={themeClasses.input}
+            placeholder={field.placeholder || "Enter your email"}
+            value={formData[field.id] || ''}
+            onChange={(e) => handleInputChange(field.id, e.target.value)}
+            required={field.required}
+          />
+        )
+      
       case "phone":
         return (
           <input
-            type={field.type}
+            type="tel"
             id={field.id}
-            value={formData[field.id] || ""}
+            className={themeClasses.input}
+            placeholder={field.placeholder || "Enter your phone number"}
+            value={formData[field.id] || ''}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            placeholder={field.placeholder}
-            className={baseInputClass}
             required={field.required}
           />
         )
@@ -62,11 +88,11 @@ const FormPreview = ({ isOpen, onClose, form }) => {
         return (
           <textarea
             id={field.id}
-            value={formData[field.id] || ""}
+            rows={4}
+            className={themeClasses.input}
+            placeholder={field.placeholder || "Enter your message"}
+            value={formData[field.id] || ''}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            placeholder={field.placeholder}
-            rows={field.rows || 3}
-            className={baseInputClass}
             required={field.required}
           />
         )
@@ -76,12 +102,10 @@ const FormPreview = ({ isOpen, onClose, form }) => {
           <input
             type="number"
             id={field.id}
-            value={formData[field.id] || ""}
+            className={themeClasses.input}
+            placeholder={field.placeholder || "Enter a number"}
+            value={formData[field.id] || ''}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            placeholder={field.placeholder}
-            min={field.min}
-            max={field.max}
-            className={baseInputClass}
             required={field.required}
           />
         )
@@ -92,7 +116,7 @@ const FormPreview = ({ isOpen, onClose, form }) => {
             id={field.id}
             value={formData[field.id] || ""}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            className={baseInputClass}
+            className={themeClasses.input}
             required={field.required}
           >
             <option value="">Select an option...</option>
@@ -155,7 +179,7 @@ const FormPreview = ({ isOpen, onClose, form }) => {
             id={field.id}
             value={formData[field.id] || ""}
             onChange={(e) => handleInputChange(field.id, e.target.value)}
-            className={baseInputClass}
+            className={themeClasses.input}
             required={field.required}
           />
         )
