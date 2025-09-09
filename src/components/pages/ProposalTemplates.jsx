@@ -174,7 +174,6 @@ const createFromPrebuilt = (template) => {
     const newTemplate = {
       ...template,
       name: `${template.name} - Copy`,
-      Id: null,
       placeholders: {
         clientName: '[CLIENT_NAME]',
         companyName: '[COMPANY_NAME]',
@@ -204,7 +203,7 @@ const createFromPrebuilt = (template) => {
     try {
       setSaving(true)
       let savedTemplate
-      if (currentTemplate.Id) {
+if (currentTemplate?.Id) {
         savedTemplate = await formBuilderService.update(currentTemplate.Id, currentTemplate)
         toast.success("Template updated successfully")
       } else {

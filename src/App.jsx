@@ -8,6 +8,7 @@ import Clients from "@/components/pages/Clients"
 import Projects from "@/components/pages/Projects"
 import Tasks from "@/components/pages/Tasks"
 import ProposalTemplates from "@/components/pages/ProposalTemplates"
+import Forms from "@/components/pages/Forms"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="clients" element={<Clients />} />
             <Route path="projects" element={<Projects />} />
             <Route path="tasks" element={<Tasks />} />
+            <Route path="forms" element={<Forms />} />
             <Route path="templates" element={<ProposalTemplates />} />
           </Route>
         </Routes>

@@ -28,8 +28,7 @@ async getAll() {
 
   async create(formData) {
     await new Promise(resolve => setTimeout(resolve, 500))
-    
-    const newForm = {
+const newForm = {
       ...formData,
       Id: nextId++,
       createdAt: new Date().toISOString(),
@@ -37,7 +36,13 @@ async getAll() {
       submissions: 0,
       isActive: true,
       fields: formData.fields || [],
-      sections: formData.sections || []
+      sections: formData.sections || [],
+      settings: formData.settings || {
+        submitText: 'Submit',
+        successMessage: 'Thank you for your submission!',
+        theme: 'default',
+        allowMultiple: true
+      }
     }
     
     forms.push(newForm)
@@ -59,7 +64,7 @@ async getAll() {
     const updatedForm = {
       ...forms[index],
       ...formData,
-      Id: id, // Preserve original ID
+Id: parseInt(id), // Preserve original ID
       updatedAt: new Date().toISOString(),
       fields: formData.fields || forms[index].fields || [],
       sections: formData.sections || forms[index].sections || []

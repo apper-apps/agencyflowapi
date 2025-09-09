@@ -235,8 +235,8 @@ if (!form) return null
   return (
 <Modal
       isOpen={isOpen}
-      onClose={onClose}
-title={form.sections ? "Proposal Preview" : "Form Preview"}
+onClose={onClose}
+      title={form?.sections ? "Proposal Preview" : "Form Preview"}
     >
       <div className="max-h-[500px] overflow-y-auto bg-gradient-to-b from-slate-50 to-white rounded-xl p-6">
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -250,7 +250,7 @@ title={form.sections ? "Proposal Preview" : "Form Preview"}
 
           {/* Form Fields */}
           <div className={themeClasses.container}>
-{(form.fields || []).map((field) => (
+{(form?.fields || []).map((field) => (
               <div key={field.id} className={themeClasses.field}>
                 <label 
                   htmlFor={field.id}
@@ -274,8 +274,8 @@ title={form.sections ? "Proposal Preview" : "Form Preview"}
             <div className="flex space-x-3">
               <Button
                 type="submit"
-                loading={submitting}
-disabled={(!form.fields || form.fields.length === 0) && (!form.sections || form.sections.length === 0)}
+loading={submitting}
+                disabled={(!form?.fields || form.fields.length === 0) && (!form?.sections || form.sections.length === 0)}
                 className="flex-1"
               >
                 {form.settings?.submitText || "Submit"}
